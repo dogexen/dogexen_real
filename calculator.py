@@ -1,69 +1,47 @@
-class Calculator:
-    def __init__(self):
-        self.version = "1.0.0"
-    
-    def add(self, a, b):
-        """Sestevanje"""
-        return a + b
-    
-    def subtract(self, a, b):
-        """Odstevanje"""
-        return a - b
-    
-    def multiply(self, a, b):
-        """Mnozenje"""
-        return a * b
-    
-    def divide(self, a, b):
-        """Deljenje"""
-        if b == 0:
-            raise ValueError("Deljenje z nic ni mogoce!")
-        return a / b
-    
-    def power(self, a, b):
-        """Potenciranje"""
-        return a ** b
+def add(x, y):
+    return x + y
 
-def main():
-    calc = Calculator()
-    print(f"Kalkulator verzija {calc.version}")
-    print("="*40)
-    
-    while True:
-        print("\n1. Sestevanje")
-        print("2. Odstevanje")
-        print("3. Mnozenje")
-        print("4. Deljenje")
-        print("5. Potenciranje")
-        print("0. Izhod")
-        
-        choice = input("\nIzberi operacijo: ")
-        
-        if choice == "0":
-            print("Nasvidenje!")
-            break
-        
-        if choice in ["1", "2", "3", "4", "5"]:
-            try:
-                a = float(input("Vnesi prvo stevilo: "))
-                b = float(input("Vnesi drugo stevilo: "))
-                
-                if choice == "1":
-                    print(f"Rezultat: {calc.add(a, b)}")
-                elif choice == "2":
-                    print(f"Rezultat: {calc.subtract(a, b)}")
-                elif choice == "3":
-                    print(f"Rezultat: {calc.multiply(a, b)}")
-                elif choice == "4":
-                    print(f"Rezultat: {calc.divide(a, b)}")
-                elif choice == "5":
-                    print(f"Rezultat: {calc.power(a, b)}")
-            except ValueError as e:
-                print(f"Napaka: {e}")
-            except Exception as e:
-                print(f"Prislo je do napake: {e}")
-        else:
-            print("Neveljavna izbira!")
+def subtract(x, y):
+    return x - y
 
-if __name__ == "__main__":
-    main()
+def multiply(x, y):
+    return x * y
+
+def divide(x, y):
+    return x / y
+
+
+print("Select operation.")
+print("1.Add")
+print("2.Subtract")
+print("3.Multiply")
+print("4.Divide")
+
+while True:
+    choice = input("Enter choice(1/2/3/4): ")
+
+    if choice in ('1', '2', '3', '4'):
+        try:
+            num1 = float(input("Enter first number: "))
+            num2 = float(input("Enter second number: "))
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            continue
+
+        if choice == '1':
+            print(num1, "+", num2, "=", add(num1, num2))
+
+        elif choice == '2':
+            print(num1, "-", num2, "=", subtract(num1, num2))
+
+        elif choice == '3':
+            print(num1, "*", num2, "=", multiply(num1, num2))
+
+        elif choice == '4':
+            print(num1, "/", num2, "=", divide(num1, num2))
+        
+        next_calculation = input("Let's do next calculation? (yes/no): ")
+        if next_calculation == "no":
+          break
+    else:
+        print("Invalid Input")
